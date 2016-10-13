@@ -5,15 +5,14 @@ import { HttpModule }    from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
-import { Constants } from './app.constants';
-import { HttpClient } from './_libraries/http.client';
+
+import { AuthGuard } from './_guards/index';
+import { HttpClient } from './_libraries/index';
+import { AlertService, AuthService, UserService } from './services/index';
 
 import { AlertComponent } from './_directives/index';
-import { AuthGuard } from './_guards/index';
-import { AlertService, AuthService, UserService } from './_services/index';
-
-import { HomeComponent } from './home/index';
-import { LoginComponent } from './login/index';
+import { HomeComponent } from './components/home/index';
+import { LoginComponent } from './components/auth/index';
 
 @NgModule({
     imports: [
@@ -29,7 +28,6 @@ import { LoginComponent } from './login/index';
         LoginComponent
     ],
     providers: [
-        Constants,
         AuthGuard,
         HttpClient,
         AlertService,
