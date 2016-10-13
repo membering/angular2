@@ -8,7 +8,7 @@ export class HttpClient {
 
     public API_URL = 'http://api.fastcard.vn';
 
-    private header() {
+    private options() {
         let token = localStorage.getItem('token');
         if (token) {
             let headers = new Headers({ 'x-access-token': token });
@@ -17,10 +17,10 @@ export class HttpClient {
     }
 
     get(url) {
-        return this.http.get(this.API_URL + url, this.header()).map((response: Response) => response.json());
+        return this.http.get(this.API_URL + url, this.options()).map((response: Response) => response.json());
     }
 
     post(url, data = null) {
-        return this.http.post(this.API_URL + url, data, this.header()).map((response: Response) => response.json());
+        return this.http.post(this.API_URL + url, data, this.options()).map((response: Response) => response.json());
     }
 }

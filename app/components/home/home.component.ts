@@ -9,7 +9,7 @@ import { UserService } from '../../services/index';
 })
 
 export class HomeComponent implements OnInit {
-    currentUser: User[] = [];
+    currentUser: User = new User();
 
     constructor(private userService: UserService) { }
 
@@ -18,6 +18,6 @@ export class HomeComponent implements OnInit {
     }
 
     private loadProfile() {
-        this.userService.getProfile().subscribe(response => {this.currentUser = response.data});
+        this.userService.getProfile().subscribe(response => { this.currentUser = response.data; });
     }
 }
