@@ -17,10 +17,15 @@ export class Config {
                     this._env = env_data;
                     this.http.get('app/config/' + env_data.env + '.config.json')
                     .map(res => res.json())
-                        .subscribe((data) => {
-                            this._config = data;
-                            resolve(true);
-                        });
+                        .subscribe(
+                            data => {
+                                this._config = data;
+                                resolve(true);
+                            },
+                            error => {
+                                console.log(error);
+                                resolve(false);
+                            });
                 });
         });
     }
