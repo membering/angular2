@@ -1,9 +1,10 @@
-import { NgModule }      from '@angular/core';
+import { NgModule, APP_INITIALIZER }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 import { provideAuth }   from 'angular2-jwt';
 
+import { Config } from './config';
 import { AppComponent } from './components/app.component';
 import { AppRoutes } from './app.routes';
 
@@ -29,6 +30,13 @@ import { LoginComponent } from './components/auth/index';
         LoginComponent
     ],
     providers: [
+        Config,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: (config: Config) => () => config.load(),
+            deps: [Config],
+            multi: true
+        },
         provideAuth({
             headerName: 'x-access-token',
             tokenName: 'jwt-token',
