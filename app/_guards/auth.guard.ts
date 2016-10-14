@@ -6,7 +6,7 @@ export class AuthGuard implements CanActivate {
     constructor(private router: Router) { }
 
     canActivate() {
-        if (localStorage.getItem('token')) {
+        if (localStorage.getItem('jwt-token')) {
             return true;
         }
 

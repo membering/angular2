@@ -3,5 +3,6 @@
 /app/*.js.map
 /app/**/*.js
 /app/**/*.js.map
+/app/config/*.config.json
 /node_modules
 /typings

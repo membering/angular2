@@ -2,6 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
 import { HttpModule }    from '@angular/http';
+import { provideAuth }   from 'angular2-jwt';
 
 import { AppComponent } from './components/app.component';
 import { AppRoutes } from './app.routes';
@@ -28,6 +29,12 @@ import { LoginComponent } from './components/auth/index';
         LoginComponent
     ],
     providers: [
+        provideAuth({
+            headerName: 'x-access-token',
+            tokenName: 'jwt-token',
+            noJwtError: true,
+            noTokenScheme: true
+        }),
         AuthGuard,
         HttpClient,
         AlertService,

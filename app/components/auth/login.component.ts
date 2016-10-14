@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
                 response => {
                     if (response.code == 200) {
                         if (response.data.token) {
-                            localStorage.setItem('token', response.data.token);
+                            localStorage.setItem('jwt-token', response.data.token);
                             this.router.navigate(['/']);
                         }
                         this.alertService.error(response.message);
