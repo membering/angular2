@@ -1,2 +1,4 @@
 /* Master Styles */
-@import "node_modules/bootstrap/dist/css/bootstrap.min.css";
+body {
+    background: #F7F7F7;
+}

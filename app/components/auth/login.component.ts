@@ -31,8 +31,6 @@ export class LoginComponent implements OnInit {
                             localStorage.setItem('jwt-token', response.data.token);
                             this.router.navigate(['/']);
                         }
-                        this.alertService.error(response.message);
-                        this.loading = false;
                     }
                     else {
                         this.alertService.error(response.message);

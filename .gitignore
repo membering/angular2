@@ -4,5 +4,7 @@
 /app/**/*.js
 /app/**/*.js.map
 /app/config/*.config.json
+/bower_components
 /node_modules
+/vendor
 /typings
