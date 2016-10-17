@@ -7,37 +7,33 @@ var assetsProd = 'build/assets/';
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 // var imagemin = require('gulp-imagemin');
-var typescript = require('gulp-typescript');
-var tsProject = typescript.createProject('tsconfig.json', {
-    typescript: require('typescript')
-});
+var ts = require('gulp-typescript');
+var tsProject = ts.createProject('tsconfig.json');
 var sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('build-css', function () {
+gulp.task('build-css', () => {
     return gulp.src(assetsDev + 'sass/*.scss')
-        .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
-        .pipe(sourcemaps.write())
         .pipe(gulp.dest(assetsProd + 'css/'));
 });
 
-gulp.task('build-css-app', function () {
-    return gulp.src(appDev + '**/*.scss')
+gulp.task('build-css-app', () => {
+    return gulp.src(appDev + 'app/**/*.scss')
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest(appProd));
+        .pipe(gulp.dest(appProd + 'app/'));
 });
 
-gulp.task('build-js', function () {
+gulp.task('build-js', () => {
     return gulp.src(appDev + '**/*.ts')
         .pipe(sourcemaps.init())
-        .pipe(typescript(tsProject))
+        .pipe(tsProject())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(appProd));
 });
 
-gulp.task('build-images', function () {
+gulp.task('build-images', () => {
     return gulp.src(assetsDev + 'images/**/*')
         // .pipe(imagemin({
         //     progressive: true
@@ -45,45 +41,33 @@ gulp.task('build-images', function () {
         .pipe(gulp.dest(assetsProd + 'images/'));
 });
 
-gulp.task('build-html', function () {
-    return gulp.src(appDev + '**/*.html')
-        .pipe(gulp.dest(appProd));
-});
-
-gulp.task('build-json', function () {
-    return gulp.src(appDev + '**/*.json')
-        .pipe(gulp.dest(appProd));
-});
-
-gulp.task('systemjs', () => {
-    return gulp.src([appDev + 'systemjs.config.js'])
-        .pipe(gulp.dest(appProd));
+gulp.task('resources', () => {
+    return gulp.src([appDev + '**/*', '!' + assetsDev + '**/*', '!**/*.ts', '!**/*.scss'])
+        .pipe(gulp.dest("build"));
 });
 
 gulp.task('libraries', () => {
     return gulp.src([
-        'core-js/client/**/*',
-        'systemjs/dist/system-polyfills.js',
-        'systemjs/dist/system.src.js',
+        'core-js/**/*',
+        'systemjs/**/*',
         'reflect-metadata/**/*',
         'rxjs/**/*',
-        'zone.js/dist/**',
-        '@angular/**/bundles/**',
+        'zone.js/**/*',
+        '@angular/**/*',
         'angular2-jwt/**',
-        'js-base64/base64.js',
-        'ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
-        'moment/moment.js'
-    ], {cwd: "node_modules/**"}) /* Glob required here. */
+        'js-base64/**/*',
+        'ng2-bootstrap/**/*',
+        'moment/**/*'
+    ], {cwd: 'node_modules/**'}) /* Glob required here. */
         .pipe(gulp.dest(appProd + "libraries"));
 });
 
 gulp.task('watch', function () {
-    gulp.watch(appDev + '**/*.html', ['build-html']);
     gulp.watch(appDev + '**/*.ts', ['build-js']);
-    gulp.watch(appDev + '**/*.scss', ['build-css-app']);
+    gulp.watch(appDev + 'app/**/*.scss', ['build-css-app']);
     gulp.watch(appDev + 'systemjs.config.js', ['systemjs']);
     gulp.watch(assetsDev + 'scss/**/*.scss', ['build-css']);
     gulp.watch(assetsDev + 'images/*', ['build-images']);
 });
 
-gulp.task('default', ['build-html','build-js','build-css-app','build-css','build-images','build-json', 'systemjs', 'libraries']);
+gulp.task('default', ['build-js','build-css-app','build-css','build-images','resources', 'libraries']);
