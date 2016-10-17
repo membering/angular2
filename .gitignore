@@ -1,7 +1,7 @@
 .idea
 build
-src/app/*.js
-src/app/*.js.map
+src/app/**/*.js
+src/app/**/*.js.map
 src/config/*.config.json
 node_modules
 typings
