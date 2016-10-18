@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding, AfterViewInit } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
     moduleId: module.id,
-    selector: 'app',
+    selector: 'body',
     templateUrl: 'app.component.html'
 })
 

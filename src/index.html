@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- application css -->
-    <link rel="stylesheet" href="libraries/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
 
     <!-- 1. Load libraries -->
     <!-- Polyfill(s) for older browsers -->
@@ -23,7 +23,7 @@
     </script>
 </head>
 <!-- 3. Display the application -->
-<body>
+<body class="nav-md">
     <app>
         <div class="spinner">
             <div class="bounce1"></div>
@@ -36,5 +36,10 @@
         // Fixes undefined module function in SystemJS bundle
         function module() {}
     </script>
+
+    <script src="libraries/jquery/dist/jquery.min.js"></script>
+    <script src="libraries/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/helper.js"></script>
 </body>
 </html>

@@ -11,26 +11,23 @@ var ts = require('gulp-typescript');
 var tsProject = ts.createProject('tsconfig.json');
 var sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('build-css', () => {
-    return gulp.src([assetsDev + 'sass/*.scss'])
-        .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest(assetsProd + 'css/'));
-});
-
-gulp.task('build-css-app', () => {
-    return gulp.src(appDev + 'app/**/*.scss')
-        .pipe(sourcemaps.init())
-        .pipe(sass().on('error', sass.logError))
-        .pipe(sourcemaps.write())
-        .pipe(gulp.dest(appProd + 'app/'));
-});
-
-gulp.task('build-js', () => {
+gulp.task('build-ts', () => {
     return gulp.src(appDev + '**/*.ts')
         .pipe(sourcemaps.init())
         .pipe(tsProject())
         .pipe(sourcemaps.write())
         .pipe(gulp.dest(appProd));
+});
+
+gulp.task('build-css', () => {
+    return gulp.src([assetsDev + 'scss/**/*.scss'])
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest(assetsProd + 'css/'));
+});
+
+gulp.task('build-js', () => {
+    return gulp.src(assetsDev + 'js/**/*.js')
+        .pipe(gulp.dest(assetsProd + 'js/'));
 });
 
 gulp.task('build-images', () => {
@@ -42,7 +39,11 @@ gulp.task('build-images', () => {
 });
 
 gulp.task('resources', () => {
-    return gulp.src([appDev + '**/*.html', appDev + '**/*.json', appDev + 'systemjs.config.js'])
+    return gulp.src([
+        appDev + '**/*.html',
+        appDev + '**/*.json',
+        appDev + 'systemjs.config.js'
+    ])
         .pipe(gulp.dest(appProd));
 });
 
@@ -57,8 +58,8 @@ gulp.task('libraries', () => {
         'angular-in-memory-web-api/*.js',
         'angular2-jwt/*.js',
         'js-base64/base64.js',
-        'ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
-        'moment/moment.js'
+        'jquery/dist/jquery.min.js',
+        'bootstrap/dist/js/bootstrap.min.js'
     ], {cwd: 'node_modules/**'})
         .pipe(gulp.dest(appProd + "libraries"));
 });
@@ -71,5 +72,5 @@ gulp.task('fonts', () => {
         .pipe(gulp.dest(assetsProd + "fonts/"));
 });
 
-gulp.task('build', ['build-js','build-css-app','build-css','build-images','resources','libraries','fonts']);
-gulp.task('default', ['build-js','build-css-app','build-css','build-images','resources']);
+gulp.task('build', ['build-ts','build-css','build-js','build-images','resources','libraries','fonts']);
+gulp.task('default', ['build-ts','build-css','build-js','build-images','resources']);
