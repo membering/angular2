@@ -1,18 +1,18 @@
-import { NgModule, APP_INITIALIZER }      from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
-import { HttpModule }    from '@angular/http';
-import { AUTH_PROVIDERS }   from 'angular2-jwt';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { AUTH_PROVIDERS } from 'angular2-jwt';
 
 import { Config } from './config';
-import { AppComponent } from './components/app.component';
+import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
 
 import { AuthGuard } from './_guards/index';
 import { HttpClient } from './_libraries/index';
 import { AlertService, AuthService, UserService, CardService } from './services/index';
 
-import { DashboardModule } from './components/dashboard/dashboard.module';
+import { HomeModule } from './components/home/home.module';
 import { LoginComponent } from './components/login/index';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { LoginComponent } from './components/login/index';
         FormsModule,
         HttpModule,
         AppRoutes,
-        DashboardModule
+        HomeModule
     ],
     declarations: [
         AppComponent,

@@ -1,5 +1,5 @@
 #sidebar {
-	width: $nav-width;
+	width: 235px;
 	position: fixed;
 	top: 0;
 	bottom: 0;
@@ -86,7 +86,7 @@
 
 @media screen and (max-width: 768px) {
  	#sidebar {
- 		left : -$nav-width;
+ 		left : -235px;
  	}   
  	.main-container {
  	    margin-left: 0 !important;
