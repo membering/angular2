@@ -20,6 +20,7 @@ export class AuthService {
             email: email,
             pwd: pwd
         };
+        //noinspection TypeScriptUnresolvedFunction
         return this.http.post(this.apiUrl + '/auth/login', data).map((response: Response) => response.json());
     }
 

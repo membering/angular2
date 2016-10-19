@@ -6,6 +6,8 @@ import { CardComponent } from './card.component';
 import { ListComponent } from './list/list.component';
 import { GenerateComponent } from './generate/generate.component';
 
+import { CardService } from '../../../services/index';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -15,6 +17,9 @@ import { GenerateComponent } from './generate/generate.component';
         CardComponent,
         ListComponent,
         GenerateComponent
+    ],
+    providers: [
+        CardService
     ],
     bootstrap: [ CardComponent ]
 })

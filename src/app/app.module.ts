@@ -10,7 +10,7 @@ import { AppRoutes } from './app.routes';
 
 import { AuthGuard } from './_guards/index';
 import { HttpClient } from './_libraries/index';
-import { AlertService, AuthService, UserService, CardService } from './services/index';
+import { AlertService, AuthService, UserService } from './services/index';
 
 import { HomeModule } from './components/home/home.module';
 import { LoginComponent } from './components/login/index';
@@ -39,8 +39,7 @@ import { LoginComponent } from './components/login/index';
         HttpClient,
         AlertService,
         AuthService,
-        UserService,
-        CardService
+        UserService
     ],
     bootstrap: [ AppComponent ]
 })
