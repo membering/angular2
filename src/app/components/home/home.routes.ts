@@ -11,7 +11,8 @@ export const HomeRoutes: Route[] = [
     	path: '',
     	component: HomeComponent,
     	children: [
-			{ path: '', component: DashboardComponent},
+			{ path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+			{ path: 'dashboard', component: DashboardComponent, data: { name: 'Dashboard' } },
 			...CardRoutes
     	],
 		canActivate: [AuthGuard]

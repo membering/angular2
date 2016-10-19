@@ -10,8 +10,9 @@ export const CardRoutes: Route[] = [
         path: 'card',
         component: CardComponent,
         children: [
-            { path: 'list', component: ListComponent},
-            { path: 'generate', component: GenerateComponent}
+            { path: '', redirectTo: 'list', pathMatch: 'full' },
+            { path: 'list', component: ListComponent, data: { name: 'List' } },
+            { path: 'generate', component: GenerateComponent, data: { name: 'Generate' } }
         ]
     }
 ];

@@ -1,0 +1,24 @@
+{
+  "name": "angular-quickstart",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Thien Nguyen <thien.nguyen@seldatinc.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/membering/angular2",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.6.3",
+    "themify-icons": "^0.1.2",
+    "animate.css": "^3.5.2",
+    "remarkable-bootstrap-notify": "^3.1.3"
+  }
+}

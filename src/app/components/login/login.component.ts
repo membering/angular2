@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { AlertService, AuthService } from '../../services/index';
 
 @Component({
@@ -33,8 +32,10 @@ export class LoginComponent implements OnInit {
                             this.router.navigate(['/']);
                         }
                     }
-                    this.alertService.error(response.message);
-                    this.loading = false;
+                    else {
+                        this.alertService.error(response.message);
+                        this.loading = false;
+                    }
                 },
                 error => {
                     this.alertService.error(error);
